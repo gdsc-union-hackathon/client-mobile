@@ -18,10 +18,17 @@ import java.io.IOException
 
 class GdscUnionViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _splashScreenTimer = MutableStateFlow(3)
+    private val _isTeacher = MutableStateFlow(true)
+    val isTeacher: StateFlow<Boolean> = _isTeacher
+
+    fun updateIsTeacher(isTeacher: Boolean) {
+        _isTeacher.update { isTeacher }
+    }
+
+    private val _splashScreenTimer = MutableStateFlow(2)
     val splashScreenTimer: StateFlow<Int> = _splashScreenTimer
 
-    private val _isSignedIn = MutableStateFlow(false)
+    private val _isSignedIn = MutableStateFlow(true)
     val isSignedIn: StateFlow<Boolean> = _isSignedIn
 
     private val _isSigningIn = MutableStateFlow(true)
@@ -47,6 +54,11 @@ class GdscUnionViewModel(application: Application) : AndroidViewModel(applicatio
     val inputName: StateFlow<String> = _inputName
     private val _inputPhoneNumber = MutableStateFlow("")
     val inputPhoneNumber: StateFlow<String> = _inputPhoneNumber
+    // 0: None, 1: Teacher, 2: Student
+    private val _selectedType = MutableStateFlow(0)
+    val selectedType: StateFlow<Int> = _selectedType
+    private val _inputWorkPlace = MutableStateFlow("")
+    val inputWorkPlace: StateFlow<String> = _inputWorkPlace
 
     fun updateInputSignUpId(id: String) {
         _inputSignUpId.update { id }
@@ -56,8 +68,16 @@ class GdscUnionViewModel(application: Application) : AndroidViewModel(applicatio
         _inputName.update { name }
     }
 
-    fun updatePhoneNumber(number: String) {
+    fun updateInputPhoneNumber(number: String) {
         _inputPhoneNumber.update { number }
+    }
+
+    fun updateSelectedType(type: Int) {
+        _selectedType.update { type }
+    }
+
+    fun updateInputWorkPlace(workPlace: String) {
+        _inputWorkPlace.update { workPlace }
     }
 
     // Sign In Screen

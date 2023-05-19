@@ -5,14 +5,17 @@ import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.ClickableText
@@ -23,6 +26,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -85,8 +89,40 @@ fun SignInScreen(
                 color = Color(0xff666666)
             )
         }
+        Spacer(
+            modifier = Modifier
+                .height(40.dp)
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(end = 20.dp),
+            contentAlignment = Alignment.CenterEnd
+        ) {
+            Box(
+                modifier = Modifier
+                    .height(50.dp)
+                    .clip(
+                        shape = RoundedCornerShape(50)
+                    )
+                    .background(
+                        color = Color(0xffbbeebb),
+                        shape = RoundedCornerShape(50)
+                    )
+                    .clickable {
+
+                    },
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    modifier = Modifier
+                        .padding(start = 20.dp, end = 20.dp),
+                    text = "로그인"
+                )
+            }
+        }
         val annotatedString = buildAnnotatedString {
-            append("아직 계정이 없으신가요?")
+            append("아직 계정이 없으신가요?  ")
             withStyle(
                 style = SpanStyle(
                     color = Color.Red
@@ -96,6 +132,10 @@ fun SignInScreen(
                 append("회원가입")
             }
         }
+        Spacer(
+            modifier = Modifier
+                .height(20.dp)
+        )
         ClickableText(
             text = annotatedString,
             onClick = {

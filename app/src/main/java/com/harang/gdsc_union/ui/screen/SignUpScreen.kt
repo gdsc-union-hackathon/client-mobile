@@ -1,18 +1,23 @@
 package com.harang.gdsc_union.ui.screen
 
 import android.util.Log
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.MutableTransitionState
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.updateTransition
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.ClickableText
@@ -21,8 +26,10 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
@@ -56,6 +63,21 @@ fun SignUpScreen(
             else -> (-15).dp
         }
     }
+    val workPlaceHintTransition = updateTransition(viewModel.inputWorkPlace.collectAsState().value, label = "")
+    val workPlaceHintUp by workPlaceHintTransition.animateDp(label = "") {
+        when(it) {
+            "" -> 0.dp
+            else -> (-15).dp
+        }
+    }
+    val workPlaceTransitionState = remember { MutableTransitionState(false) }
+//    val signUpButtonTransition = updateTransition(targetState = workPlaceTransitionState, label = "")
+//    val signUpButtonDown by signUpButtonTransition.animateDp(label = "") {
+//        when(it.currentState) {
+//            true -> 50.dp
+//            else -> 0.dp
+//        }
+//    }
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -149,7 +171,7 @@ fun SignUpScreen(
                     .fillMaxWidth()
                     .padding(start = 20.dp),
                 value = viewModel.inputPhoneNumber.collectAsState().value,
-                onValueChange = { viewModel.updatePhoneNumber(it) },
+                onValueChange = { viewModel.updateInputPhoneNumber(it) },
                 keyboardOptions = KeyboardOptions.Default.copy(
                     imeAction = ImeAction.Done
                 ),
@@ -162,8 +184,146 @@ fun SignUpScreen(
                 color = Color(0xff666666)
             )
         }
+        Spacer(
+            modifier = Modifier
+                .height(20.dp)
+        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 20.dp, end = 20.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Box(
+                modifier = Modifier
+                    .width(150.dp)
+                    .height(50.dp)
+                    .clip(
+                        shape = RoundedCornerShape(50)
+                    )
+                    .clickable {
+                        viewModel.updateSelectedType(1)
+                        workPlaceTransitionState.targetState = true
+                    }
+                    .background(
+                        color = when (viewModel.selectedType.collectAsState().value) {
+                            1 -> Color(0xff00aa00)
+                            else -> Color(0xffbbeebb)
+                        },
+                        shape = RoundedCornerShape(50)
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "스승"
+                )
+            }
+            Spacer(
+                modifier = Modifier
+                    .width(40.dp)
+            )
+            Box(
+                modifier = Modifier
+                    .width(150.dp)
+                    .height(50.dp)
+                    .clip(
+                        shape = RoundedCornerShape(50)
+                    )
+                    .clickable {
+                        viewModel.updateSelectedType(2)
+                        workPlaceTransitionState.targetState = false
+                    }
+                    .background(
+                        color = when (viewModel.selectedType.collectAsState().value) {
+                            2 -> Color(0xff00aa00)
+                            else -> Color(0xffbbeebb)
+                        },
+                        shape = RoundedCornerShape(50)
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "제자"
+                )
+            }
+        }
+        Spacer(
+            modifier = Modifier
+                .height(40.dp)
+        )
+        AnimatedVisibility(
+            visibleState = workPlaceTransitionState
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(50.dp)
+                    .padding(start = 20.dp, end = 20.dp)
+                    .background(
+                        color = Color(0xffbbeebb),
+                        shape = RoundedCornerShape(8.dp)
+                    ),
+                contentAlignment = Alignment.CenterStart
+            ) {
+                BasicTextField(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 20.dp),
+                    value = viewModel.inputWorkPlace.collectAsState().value,
+                    onValueChange = { viewModel.updateInputWorkPlace(it) },
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        imeAction = ImeAction.Done
+                    ),
+                )
+                Text(
+                    modifier = Modifier
+                        .offset(0.dp, workPlaceHintUp)
+                        .padding(start = 20.dp),
+                    text = "재직 학교",
+                    color = Color(0xff666666)
+                )
+            }
+        }
+
+        Spacer(
+            modifier = Modifier
+                .height(40.dp)
+        )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(end = 20.dp),
+            contentAlignment = Alignment.CenterEnd
+        ) {
+            Box(
+                modifier = Modifier
+                    .height(50.dp)
+                    .clip(
+                        shape = RoundedCornerShape(50)
+                    )
+                    .background(
+                        color = Color(0xffbbeebb),
+                        shape = RoundedCornerShape(50)
+                    )
+                    .clickable {
+
+                    },
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    modifier = Modifier
+                        .padding(start = 20.dp, end = 20.dp),
+                    text = "회원가입"
+                )
+            }
+        }
+        Spacer(
+            modifier = Modifier
+                .height(20.dp)
+        )
         val annotatedString = buildAnnotatedString {
-            append("이미 계정이 있으신가요?")
+            append("이미 계정이 있으신가요?  ")
             withStyle(
                 style = SpanStyle(
                     color = Color.Red

@@ -13,7 +13,9 @@ fun GdscUnionContent(
 ) {
     when(viewModel.uiState.collectAsState().value) {
         ViewType.MyPage -> {
-            MyPageScreen()
+            MyPageScreen(
+                viewModel = viewModel
+            )
         }
         else -> {
             SearchScreen(
