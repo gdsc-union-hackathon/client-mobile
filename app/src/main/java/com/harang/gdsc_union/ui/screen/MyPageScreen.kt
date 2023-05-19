@@ -11,8 +11,15 @@ import com.harang.gdsc_union.ui.viewmodel.GdscUnionViewModel
 fun MyPageScreen(
     viewModel: GdscUnionViewModel
 ) {
-    when(viewModel.isUserTeacher.collectAsState().value) {
-        true -> TeacherProfile()
-        else -> MyHistory()
-    }
+    MyHistory(
+        viewModel = viewModel
+    )
+//    when(viewModel.isUserTeacher.collectAsState().value) {
+//        true -> TeacherProfile(
+//            viewModel = viewModel
+//        )
+//        else -> MyHistory(
+//            viewModel = viewModel
+//        )
+//    }
 }

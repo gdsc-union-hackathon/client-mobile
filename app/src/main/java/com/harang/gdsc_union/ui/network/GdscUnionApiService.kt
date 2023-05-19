@@ -2,7 +2,10 @@ package com.harang.gdsc_union.ui.network
 
 import android.provider.Settings.Global
 import com.harang.gdsc_union.ui.data.GlobalConstants
+import com.harang.gdsc_union.ui.network.message.GetPostingsResponse
 import com.harang.gdsc_union.ui.network.message.GetTeachersListResponse
+import com.harang.gdsc_union.ui.network.message.PostRequest
+import com.harang.gdsc_union.ui.network.message.PostResponse
 import com.harang.gdsc_union.ui.network.message.SignInRequest
 import com.harang.gdsc_union.ui.network.message.SignInResponse
 import com.harang.gdsc_union.ui.network.message.SignUpRequest
@@ -27,4 +30,14 @@ interface GdscUnionApiService {
     suspend fun getTeachersList(
         @Url path: String
     ): GetTeachersListResponse?
+
+    @POST("/post/create")
+    suspend fun post(
+        @Body body: PostRequest
+    ): PostResponse?
+
+    @GET
+    suspend fun getPostings(
+        @Url path: String
+    ): GetPostingsResponse?
 }

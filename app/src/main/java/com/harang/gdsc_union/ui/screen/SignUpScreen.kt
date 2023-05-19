@@ -33,9 +33,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.harang.gdsc_union.ui.viewmodel.GdscUnionViewModel
 
 @Composable
@@ -82,8 +84,14 @@ fun SignUpScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
+        Spacer(
+            modifier = Modifier
+                .height(40.dp)
+        )
         Text(
-            text = "회원가입"
+            text = "회원가입",
+            fontSize = 40.sp,
+            fontWeight = FontWeight.Bold
         )
         Spacer(
             modifier = Modifier
