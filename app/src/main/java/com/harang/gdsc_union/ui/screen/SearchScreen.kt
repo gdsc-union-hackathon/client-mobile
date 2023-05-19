@@ -57,7 +57,7 @@ fun SearchScreen(
                         .fillMaxWidth()
                         .height(50.dp)
                         .background(
-                            color = Color(0xffbbeebb),
+                            color = Color(0xffbbffbb),
                             shape = RoundedCornerShape(8.dp)
                         ),
                     contentAlignment = Alignment.CenterStart
@@ -129,7 +129,7 @@ fun TeacherItem(
                     shape = RoundedCornerShape(8.dp)
                 )
                 .background(
-                    color = Color(0xffbbeebb),
+                    color = Color(0xffbbffbb),
                     shape = RoundedCornerShape(8.dp)
                 )
                 .clickable {

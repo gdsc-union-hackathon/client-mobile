@@ -78,7 +78,7 @@ fun SignInScreen(
                 .height(50.dp)
                 .padding(start = 20.dp, end = 20.dp)
                 .background(
-                    color = Color(0xffbbeebb),
+                    color = Color(0xffbbffbb),
                     shape = RoundedCornerShape(8.dp)
                 ),
             contentAlignment = Alignment.CenterStart
