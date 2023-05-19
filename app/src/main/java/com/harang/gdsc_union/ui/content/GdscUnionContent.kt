@@ -16,7 +16,9 @@ fun GdscUnionContent(
             MyPageScreen()
         }
         else -> {
-            SearchScreen()
+            SearchScreen(
+                viewModel = viewModel
+            )
         }
     }
 }

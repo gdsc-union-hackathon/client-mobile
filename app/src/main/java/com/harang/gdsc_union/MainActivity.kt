@@ -22,10 +22,11 @@ import com.harang.gdsc_union.ui.viewmodel.GdscUnionViewModel
 
 class MainActivity : ComponentActivity() {
 
-    val viewModel: GdscUnionViewModel by viewModels()
+    private val viewModel: GdscUnionViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel.signUp()
 //        val bottomNavigationBarHeight = resources.getDimensionPixelSize(resources.getIdentifier("navigation_bar_height", "dimen", "android"))
 //        Log.e("", "$bottomNavigationBarHeight")
 //        WindowCompat.setDecorFitsSystemWindows(window, false)

@@ -10,14 +10,16 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TopBar() {
+fun TopBar(
+    title: String
+) {
     TopAppBar(
         modifier = Modifier
             .height(30.dp),
         backgroundColor = Color(0xffffffff),
         title = {
             Text(
-                text = "TopBar",
+                text = title,
                 color = Color(0xff000000)
             )
         }
