@@ -110,7 +110,7 @@ fun SignInScreen(
                         shape = RoundedCornerShape(50)
                     )
                     .clickable {
-
+                        viewModel.signIn()
                     },
                 contentAlignment = Alignment.Center
             ) {

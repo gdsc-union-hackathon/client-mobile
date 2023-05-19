@@ -26,7 +26,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.signUp()
 //        val bottomNavigationBarHeight = resources.getDimensionPixelSize(resources.getIdentifier("navigation_bar_height", "dimen", "android"))
 //        Log.e("", "$bottomNavigationBarHeight")
 //        WindowCompat.setDecorFitsSystemWindows(window, false)
@@ -36,7 +35,7 @@ class MainActivity : ComponentActivity() {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
+                    color = Color(0xffffffff)
                 ) {
                     val systemUiController = rememberSystemUiController()
                     systemUiController.setStatusBarColor(

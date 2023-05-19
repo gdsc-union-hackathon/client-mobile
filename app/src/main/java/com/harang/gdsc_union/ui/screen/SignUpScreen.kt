@@ -203,12 +203,12 @@ fun SignUpScreen(
                         shape = RoundedCornerShape(50)
                     )
                     .clickable {
-                        viewModel.updateSelectedType(1)
+                        viewModel.updateInputIsTeacher(true)
                         workPlaceTransitionState.targetState = true
                     }
                     .background(
-                        color = when (viewModel.selectedType.collectAsState().value) {
-                            1 -> Color(0xff00aa00)
+                        color = when (viewModel.inputIsTeacher.collectAsState().value) {
+                            true -> Color(0xff00aa00)
                             else -> Color(0xffbbeebb)
                         },
                         shape = RoundedCornerShape(50)
@@ -231,12 +231,12 @@ fun SignUpScreen(
                         shape = RoundedCornerShape(50)
                     )
                     .clickable {
-                        viewModel.updateSelectedType(2)
+                        viewModel.updateInputIsTeacher(false)
                         workPlaceTransitionState.targetState = false
                     }
                     .background(
-                        color = when (viewModel.selectedType.collectAsState().value) {
-                            2 -> Color(0xff00aa00)
+                        color = when (viewModel.inputIsTeacher.collectAsState().value) {
+                            false -> Color(0xff00aa00)
                             else -> Color(0xffbbeebb)
                         },
                         shape = RoundedCornerShape(50)
@@ -307,7 +307,7 @@ fun SignUpScreen(
                         shape = RoundedCornerShape(50)
                     )
                     .clickable {
-
+                        viewModel.signUp()
                     },
                 contentAlignment = Alignment.Center
             ) {

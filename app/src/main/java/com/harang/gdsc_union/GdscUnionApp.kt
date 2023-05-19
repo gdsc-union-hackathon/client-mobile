@@ -1,6 +1,7 @@
 package com.harang.gdsc_union
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -9,6 +10,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import com.harang.gdsc_union.ui.content.BottomBar
 import com.harang.gdsc_union.ui.content.GdscUnionContent
 import com.harang.gdsc_union.ui.content.TopBar
@@ -55,7 +57,8 @@ fun GdscUnionApp(
                         viewModel = viewModel,
                         navigationItemContentList
                     )
-                }
+                },
+                containerColor = Color(0xffffffff)
             ) {
                 Column(
                     modifier = Modifier
